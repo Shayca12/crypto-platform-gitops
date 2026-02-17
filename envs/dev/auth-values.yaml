@@ -1,6 +1,6 @@
 image:
   repository: shayca6/auth-service
-  tag: latest
+  tag: ae059ee
 
 env:
   AUTH_SECRET: "dev-secret-change-me"
