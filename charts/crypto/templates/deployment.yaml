@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "crypto.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "crypto.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "crypto.name" . }}
+    spec:
+      containers:
+        - name: crypto
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 5001
+          env:
+            - name: AUTH_VERIFY_URL
+              value: "{{ .Values.env.AUTH_VERIFY_URL }}"
+            - name: COINGECKO_BASE_URL
+              value: "{{ .Values.env.COINGECKO_BASE_URL }}"
+            - name: REQUEST_TIMEOUT
+              value: "{{ .Values.env.REQUEST_TIMEOUT }}"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5001
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5001
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+

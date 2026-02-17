@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: shayca6/auth-service
+  tag: latest
+  pullPolicy: Always
+
+service:
+  port: 5000
+
+env:
+  AUTH_SECRET: "dev-secret-change-me"
+  TOKEN_TTL_SECONDS: "3600"
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+

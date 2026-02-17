@@ -1,0 +1,8 @@
+image:
+  repository: shayca6/auth-service
+  tag: latest
+
+env:
+  AUTH_SECRET: "dev-secret-change-me"
+  TOKEN_TTL_SECONDS: "3600"
+

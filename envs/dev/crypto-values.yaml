@@ -1,0 +1,9 @@
+image:
+  repository: shayca6/crypto-service
+  tag: latest
+
+env:
+  AUTH_VERIFY_URL: "http://auth-service:5000/auth/verify"
+  COINGECKO_BASE_URL: "https://api.coingecko.com/api/v3"
+  REQUEST_TIMEOUT: "5"
+
