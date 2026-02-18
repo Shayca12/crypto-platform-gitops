@@ -1,6 +1,6 @@
 image:
   repository: shayca6/crypto-service
-  tag: e84be0f
+  tag: 39a532a
 
 env:
   AUTH_VERIFY_URL: "http://auth-service:5000/auth/verify"
